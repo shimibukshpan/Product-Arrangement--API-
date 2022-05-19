@@ -1,0 +1,131 @@
+{
+  "uuid": "43647298-5971-4ea8-95ab-206088d3776d",
+  "lastMigration": 19,
+  "name": "HomWorkMok",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "8e2c96e1-b120-476e-8fae-b6aa2ba05604",
+      "documentation": "items",
+      "method": "get",
+      "endpoint": "items",
+      "responses": [
+        {
+          "uuid": "aa2247b2-3c8a-4c02-b7df-852f4e677312",
+          "body": "{\n  \"items\":[\n  {\"name\":\"book1\",\"prise\":\"20$\",\"category\":\"drama\"},\n  {\"name\":\"book2\",\"prise\":\"25$\",\"category\":\"love\"},\n  {\"name\":\"book3\",\"prise\":\"30$\",\"category\":\"action\"},\n  {\"name\":\"book4\",\"prise\":\"35$\",\"category\":\"drama\"}\n  ]\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "f9d7ae5a-2ad5-437c-858d-a56996da0007",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "discount",
+      "responses": [
+        {
+          "uuid": "97161fa3-a039-44bf-aa1f-3a97212c63c5",
+          "body": "{\n  \"message\":\"You have no discount\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        },
+        {
+          "uuid": "717a29cb-b34e-4f32-9670-2061ae273c63",
+          "body": "{\n  \"message\":\"You have a 15% discount\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "bookcheck",
+              "value": "book1",
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "bookcheck",
+              "value": "book2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
